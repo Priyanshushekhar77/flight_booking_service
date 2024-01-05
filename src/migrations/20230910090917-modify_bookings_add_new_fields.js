@@ -1,7 +1,5 @@
 'use strict';
 
-const { sequelize } = require('../models');
-
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
@@ -9,27 +7,27 @@ module.exports = {
      * Add altering commands here.
      *
      * Example:
-     * -> add the details u want to add by change the model file manually
-     * 
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-    await queryInterface.addColumn(
-      'Bookings',
-      'numberOfSeats',{
-        type:Sequelize.INTEGER,
+    await queryInterface.addColumn( //For column adding
+      "Bookings", //In which table to add
+      "noOfSeats", //Column name
+      { //Column Properties
+        type: Sequelize.INTEGER,
         allowNull:false,
         defaultValue:1
       }
     );
+    //The above code will add new Column in Booking Table
     await queryInterface.addColumn(
-      'Bookings',
-      'totalCost',{
-        type:Sequelize.INTEGER,
+      "Bookings",
+      "totalCost",
+      {
+        type: Sequelize.INTEGER,
         allowNull:false,
         defaultValue:0
       }
     );
-
   },
 
   async down (queryInterface, Sequelize) {
@@ -39,7 +37,8 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-    await queryInterface.removeColumn('Bookings','numberOfSeats');
-    await queryInterface.removeColumn('Bookings','totalCost');
+    await queryInterface.removeColumn("Bookings", "noOfSeats");
+    await queryInterface.removeColumn("Bookings", "totalCost");
+    //The above code will drop/remove the columns when the migration is reverted back
   }
 };

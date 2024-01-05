@@ -1,21 +1,21 @@
-const express = require('express');
-const app =express();
-const bodyParser = require('body-parser');
-const apiroutes = require('./routes/index');
-PORT=5000
+const express= require("express");
+const bodyParser= require("body-parser");
+const apiRoutes= require("./routes/index");
+PORT = 7000
+const app= express();
 
+// const {PORT} = require("./config/serverConfig"); 
 
-
-const setupandstartserver = () => {
+const setupAndStartServer = async()=>{
 
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({extended:true}));
+    app.use("/api", apiRoutes);
 
-    app.use('/api',apiroutes);
-
-    app.listen((PORT), async() => {
-        console.log(`server start at port:${PORT}`);
-    })
+    app.listen(PORT, async()=>{
+        console.log(`Server Running at PORT : ${PORT}`);
+        
+    });
 }
 
-setupandstartserver();
+setupAndStartServer();
