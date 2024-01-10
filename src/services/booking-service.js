@@ -2,6 +2,7 @@ const axios = require("axios");
 const { BookingRepository } = require("../repository/index");
 // const { FLIGHT_SERVICE_PATH } = require("../config/serverConfig");
 FLIGHT_SERVICE_PATH='http://localhost:3000'
+
 const { ServiceError } = require("../utils/errors/index");
 const { StatusCodes } = require("http-status-codes");
 

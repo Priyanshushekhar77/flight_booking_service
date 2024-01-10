@@ -1,10 +1,12 @@
+const dotenv=  require('dotenv');
+dotenv.config();
+const{PORT} = require('./config/serverConfig')
+
 const express= require("express");
 const bodyParser= require("body-parser");
 const apiRoutes= require("./routes/index");
-PORT = 7000
-const app= express();
 
-// const {PORT} = require("./config/serverConfig"); 
+const app= express(); 
 
 const setupAndStartServer = async()=>{
 
