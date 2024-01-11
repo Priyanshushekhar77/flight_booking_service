@@ -12,13 +12,31 @@ class BookingController{
 
     }
     async SendMessageToQueue(req,res) {
+      try{
         const channel = await createChannel();
-        const data = {message:'Success'}
-        publishMessage(channel,REMAINDER_BINDING_KEY,JSON.stringify(data));
+        const payload  = {
+            data:{
+                subject:'notification from queue',
+                content:'Subscribe these data',
+                recepientEmail:'way6shekhargmail.com',
+                notificationTime:'2024-01-11 05:24:00'
+            },
+            service:'BOOK_TICKET'
+            
+        };
+        publishMessage(channel,REMAINDER_BINDING_KEY,JSON.stringify(payload));
         return res.status(200).json({
-            message:'Successfully published'
-        })
+            message:'Successfully published',
+        });
+      }
+      catch(error){
+            console.log(error);
+            return res.status(500).json({
+                message:"Unsuccessful"
+            });
+      }
     }
+    
 
    
 
